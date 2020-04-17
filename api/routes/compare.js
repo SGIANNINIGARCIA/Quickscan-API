@@ -16,15 +16,14 @@ router.post('/', async (req, res, next) => {
     // retrieve items from both stores
     const Malarasa = await LocalItem.find({ STORE: "MALARASA" })
     const WallyWorld = await LocalItem.find({ STORE: "WALLY WORLD" })
-    const items = {
-        items: req.body.items
-    }
+
+    const items = req.body.items
 
     let malarasaPrice = 0;
     let WallyWorldPrice = 0;
 
     // itiriate through the requested items
-    items.items.map((item) => {
+    items.map((item) => {
 
         // compare with Malarasa items
         Malarasa.map(malarasaItem => {

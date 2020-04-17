@@ -11,7 +11,7 @@ const compareRoutes = require('./api/routes/compare');
 
 
 //DATABASE CONNECTION 
-mongoose.connect('mongodb+srv://private@quickscan-sfjsg.mongodb.net/test?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://sgiannini:serenityserenity@quickscan-sfjsg.mongodb.net/test?retryWrites=true&w=majority', 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
