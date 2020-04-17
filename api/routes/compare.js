@@ -40,7 +40,11 @@ router.post('/', async (req, res, next) => {
         })
     })
     res.status(200).json([
+<<<<<<< HEAD
                 {
+=======
+        {
+>>>>>>> 1c33895506751d325cecfec0301ffb8518ad172c
                     store: "MALARASA",
                     finalPrice: malarasaPrice
                 },
@@ -48,11 +52,15 @@ router.post('/', async (req, res, next) => {
                     store: "Wally World",
                     finalPrice: WallyWorldPrice
                 }
+<<<<<<< HEAD
             ])
         } catch (err) {
             res.status(500).json({ message: err.message });
             console.log(err);
         }
+=======
+            ]))
+>>>>>>> 1c33895506751d325cecfec0301ffb8518ad172c
 
         });
 
