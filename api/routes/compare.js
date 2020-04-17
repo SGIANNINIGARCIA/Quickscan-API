@@ -37,10 +37,9 @@ router.post('/', async (req, res, next) => {
                 WallyWorldPrice += WallyWorldItem.PRICE
             }
         })
-    }).then(() => {
-        (
-            res.status(200).json([
-                {
+    })
+    res.status(200).json([
+        {
                     store: "MALARASA",
                     finalPrice: malarasaPrice
                 },
@@ -49,13 +48,6 @@ router.post('/', async (req, res, next) => {
                     finalPrice: WallyWorldPrice
                 }
             ]))
-    })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({
-                error: err
-            });
-        });
 
 });
 
