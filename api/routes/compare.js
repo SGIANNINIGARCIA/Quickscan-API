@@ -12,6 +12,7 @@ const LocalItem = require('../models/localitem');
 */ 
 router.post('/', async (req, res, next) => {
 
+    try {
     // retrieve items from both stores
     const Malarasa = await LocalItem.find({ STORE: "MALARASA" })
     const WallyWorld = await LocalItem.find({ STORE: "WALLY WORLD" })
@@ -37,9 +38,8 @@ router.post('/', async (req, res, next) => {
                 WallyWorldPrice += WallyWorldItem.PRICE
             }
         })
-    }).then(() => {
-        (
-            res.status(200).json([
+    })
+    res.status(200).json([
                 {
                     store: "MALARASA",
                     finalPrice: malarasaPrice
@@ -48,16 +48,13 @@ router.post('/', async (req, res, next) => {
                     store: "Wally World",
                     finalPrice: WallyWorldPrice
                 }
-            ]))
-    })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({
-                error: err
-            });
-        });
+            ])
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+            console.log(err);
+        }
 
-});
+        });
 
 
 module.exports = router;
