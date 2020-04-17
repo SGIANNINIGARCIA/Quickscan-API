@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const itemRoutes = require('./api/routes/Items');
 const barcodeRoutes = require('./api/routes/barcode');
+const compareRoutes = require('./api/routes/compare');
 
 
 
@@ -33,6 +34,8 @@ app.use(express.json());
 app.use('/items', itemRoutes);
 // Route for barcode
 app.use('/barcode', barcodeRoutes);
+
+app.use('/compare', compareRoutes);
 
 // Error handling
 app.use((req, res, next) =>{

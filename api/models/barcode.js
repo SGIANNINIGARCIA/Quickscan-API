@@ -8,6 +8,10 @@ const barcodeSchema = mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    items: {
+        type: [Object],
+        required: false
     }
 });
 

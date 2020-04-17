@@ -9,10 +9,11 @@ for specific items in our store specific database
 (used for the todo list, and scan now feature).
 It receives an UPK or ID and it should return a JSON file with the item name, price, and brand. 
 */ 
-router.post('/:barcodeID', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const barcode = new Barcode({
         barcodeNumber: req.body.barcodeNumber,
         price: req.body.price,
+        items: req.body.items,
     });
     await barcode
     .save()

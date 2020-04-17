@@ -77,6 +77,34 @@ router.get('/byupc/:productUPC', (req, res, next) => {
 
 
 /*
+The code below handles request 
+for items in our store specific database with UPC
+(used for the todo list, and scan now feature).
+It receives an UPC and it should return a JSON file with the all the items name, price, and brand. 
+*/
+router.get('/bystore/:STORENAME', (req, res, next) => {
+    const id = req.params.STORENAME;
+    LocalItem.find({STORE: id})
+    .exec()
+    .then(doc => {
+        console.log("From database", doc);
+        if(doc) {
+           res.status(200).json(doc); 
+        } else {
+            res.status(404).json({
+                message: "unable to find item with that upc"
+            })
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+    });
+
+}); 
+
+
+/*
 The code below handles post request 
 to add a global item to the database
 (used admin purposes and testing).
