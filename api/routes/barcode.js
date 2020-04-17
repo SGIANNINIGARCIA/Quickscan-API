@@ -40,7 +40,7 @@ It returns a JSON object array with all barcodes
 */ 
 router.get('/', async (req, res, next) => {
     try {
-        const allbarcodes = await Barcode.find();
+	const allbarcodes = await Barcode.find();
         res.status(200).json(allbarcodes);
         console.log(allbarcodes);
     } catch (err) {
@@ -57,7 +57,7 @@ It returns a JSON object array with the requested barcode information
 router.get('/:barcodeNum', async (req, res, next) => {
     const barcodeNum = req.params.barcodeNum;
     try {
-        const barcode = await Barcode.find({barcodeNumber: barcodeNum});
+	const barcode = await Barcode.find({barcodeNumber: barcodeNum});
         res.status(200).json(barcode);
         console.log(barcode);
     } catch (err) {

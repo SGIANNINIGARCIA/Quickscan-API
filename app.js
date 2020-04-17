@@ -34,7 +34,7 @@ app.use(express.json());
 app.use('/items', itemRoutes);
 // Route for barcode
 app.use('/barcode', barcodeRoutes);
-
+// Route for compare
 app.use('/compare', compareRoutes);
 
 // Error handling

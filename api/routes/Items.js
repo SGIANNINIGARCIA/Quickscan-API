@@ -13,7 +13,7 @@ It should return a JSON file with all the items, their UPC , name, and brand
 */
 router.get('/', async (req, res, next) => {
     try {
-        const globalItems = await GlobalItems.find();
+	const globalItems = await GlobalItems.find();
         res.status(200).json(globalItems);
         console.log(globalItems);
     } catch (err) {
@@ -40,7 +40,7 @@ router.get('/:productID', (req, res, next) => {
             res.status(404).json({
                 message: "unable to find item with that id"
             })
-        }
+	}
     })
     .catch(err => {
         console.log(err);
@@ -48,6 +48,7 @@ router.get('/:productID', (req, res, next) => {
     });
 
 });  
+
 /*
 The code below handles request 
 for items in our store specific database with UPC
