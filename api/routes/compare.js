@@ -12,33 +12,31 @@ const LocalItem = require('../models/localitem');
 */ 
 router.post('/', async (req, res, next) => {
 
-    try {
     // retrieve items from both stores
     const Malarasa = await LocalItem.find({ STORE: "MALARASA" })
     const WallyWorld = await LocalItem.find({ STORE: "WALLY WORLD" })
-
     const items = req.body.items
 
     let malarasaPrice = 0;
     let WallyWorldPrice = 0;
-
+        console.log(items);
     // itiriate through the requested items
     items.map((item) => {
 
         // compare with Malarasa items
         Malarasa.map(malarasaItem => {
             if (malarasaItem.NAME === item.name) {
-                malarasaPrice += malarasaItem.PRICE
+                malarasaPrice = malarasaPrice + (malarasaItem.PRICE * item.quantity)
             }
-        })
+	})
         // compare with WallyWorld items
         WallyWorld.map(WallyWorldItem => {
             if (WallyWorldItem.NAME === item.name) {
-                WallyWorldPrice += WallyWorldItem.PRICE
+                WallyWorldPrice = WallyWorldPrice + (WallyWorldItem.PRICE * item.quantity)
             }
-        })
+	})
     })
-    res.status(200).json([
+            res.status(200).json([
                 {
                     store: "MALARASA",
                     finalPrice: malarasaPrice
@@ -48,12 +46,8 @@ router.post('/', async (req, res, next) => {
                     finalPrice: WallyWorldPrice
                 }
             ])
-        } catch (err) {
-            res.status(500).json({ message: err.message });
-            console.log(err);
-        }
 
-        });
+});
 
 
 module.exports = router;
